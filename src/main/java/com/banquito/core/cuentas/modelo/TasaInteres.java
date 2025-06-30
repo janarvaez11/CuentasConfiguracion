@@ -30,6 +30,9 @@ public class TasaInteres {
     private LocalDateTime fechaInicioVigencia;
     private LocalDateTime fechaFinVigencia;
 
+    private LocalDateTime fechaModificacion;
+
+
     private String estado;
     private Integer version;
 

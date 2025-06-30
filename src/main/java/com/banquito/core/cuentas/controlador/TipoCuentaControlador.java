@@ -1,8 +1,10 @@
 package com.banquito.core.cuentas.controlador;
 
-import com.banquito.core.cuentas.modelo.TipoCuenta;
+import com.banquito.core.cuentas.dto.TipoCuentaRequestDTO;
+import com.banquito.core.cuentas.dto.TipoCuentaResponseDTO;
 import com.banquito.core.cuentas.servicio.TipoCuentaServicio;
-import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,36 +20,34 @@ public class TipoCuentaControlador {
     }
 
     @GetMapping
-    public List<TipoCuenta> listar() {
+    public List<TipoCuentaResponseDTO> listar() {
         return servicio.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoCuenta> obtenerPorId(@PathVariable String id) {
-        return servicio.obtenerPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public TipoCuentaResponseDTO obtenerPorId(@PathVariable String id) {
+        return servicio.obtenerPorId(id);
     }
 
     @PostMapping
-    public TipoCuenta crear(@RequestBody TipoCuenta tipoCuenta) {
-        return servicio.crear(tipoCuenta);
+    @ResponseStatus(HttpStatus.CREATED)
+    public TipoCuentaResponseDTO crear(
+            @Valid @RequestBody TipoCuentaRequestDTO request
+    ) {
+        return servicio.crear(request);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TipoCuenta> actualizar(
+    public TipoCuentaResponseDTO actualizar(
             @PathVariable String id,
-            @RequestBody TipoCuenta cambios) {
-        try {
-            return ResponseEntity.ok(servicio.actualizar(id, cambios));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+            @Valid @RequestBody TipoCuentaRequestDTO request
+    ) {
+        return servicio.actualizar(id, request);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable String id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(@PathVariable String id) {
         servicio.eliminar(id);
-        return ResponseEntity.noContent().build();
     }
 }

@@ -35,4 +35,8 @@ public class TipoCuenta {
     public TipoCuenta(String id) {
         this.id = id;
     }
+
+    public static final String ESTADO_ACTIVO = "ACTIVO";
+    public static final String ESTADO_INACTIVO = "INACTIVO";
+
 }
