@@ -2,7 +2,7 @@ package com.banquito.core.cuentas.servicio;
 
 import com.banquito.core.cuentas.dto.TipoCuentaRequestDTO;
 import com.banquito.core.cuentas.dto.TipoCuentaResponseDTO;
-import com.banquito.core.excepciones.RecursoNoEncontradoException;
+import com.banquito.core.cuentas.excepciones.RecursoNoEncontradoException;
 import com.banquito.core.cuentas.mapper.TipoCuentaMapper;
 import com.banquito.core.cuentas.modelo.TipoCuenta;
 import com.banquito.core.cuentas.repositorio.TipoCuentaRepositorio;

@@ -2,7 +2,7 @@
 package com.banquito.core.cuentas.servicio;
 
 import com.banquito.core.cuentas.dto.*;
-import com.banquito.core.excepciones.RecursoNoEncontradoException;
+import com.banquito.core.cuentas.excepciones.RecursoNoEncontradoException;
 import com.banquito.core.cuentas.mapper.TasaInteresMapper;
 import com.banquito.core.cuentas.modelo.TasaInteres;
 import com.banquito.core.cuentas.repositorio.TasaInteresRepositorio;
