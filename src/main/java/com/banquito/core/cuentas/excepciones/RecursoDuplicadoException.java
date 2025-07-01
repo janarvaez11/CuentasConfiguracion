@@ -1,4 +1,4 @@
-package com.banquito.core.excepciones;
+package com.banquito.core.cuentas.excepciones;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

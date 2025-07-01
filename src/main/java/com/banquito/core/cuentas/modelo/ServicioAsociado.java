@@ -9,31 +9,23 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@Document(collection = "tipos_cuentas")
-public class TipoCuenta {
-
+@Getter @Setter @NoArgsConstructor
+@Document(collection = "servicios_asociados")
+public class ServicioAsociado {
     @Id
     private String id;
-    private String idMoneda;
-
-    @Indexed(name = "idx_tasa_defecto", unique = false)
-    private String idTasaInteresPorDefecto;
-
+    
+    @Indexed(name = "idx_servicio_nombre", unique = true)
     private String nombre;
     private String descripcion;
-    private String tipoCliente; // p.ej. "PERSONA","EMPRESA","AMBOS"
-
+    private String estado;            // ACTIVO / INACTIVO
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaModificacion;
-    private String estado; // "ACTIVO","INACTIVO"
-    private Integer version;
-    public TipoCuenta(String id) {
-        this.id = id;
-    }
-    public static final String ESTADO_ACTIVO = "ACTIVO";
-    public static final String ESTADO_INACTIVO = "INACTIVO";
+    private Long version;
+    
+    public ServicioAsociado(String id) { this.id = id; }
 
+    // constantes de estado
+    public static final String ESTADO_ACTIVO   = "ACTIVO";
+    public static final String ESTADO_INACTIVO = "INACTIVO";
 }
