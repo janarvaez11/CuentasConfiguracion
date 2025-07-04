@@ -28,6 +28,7 @@ public class ComisionCargo {
     private BigDecimal monto;
     private String frecuencia;        // MENSUAL / TRIMESTRAL / ANUAL
     private String estado;            // ACTIVO / INACTIVO
+    private String descripcion;
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaModificacion;
     private Long version;
