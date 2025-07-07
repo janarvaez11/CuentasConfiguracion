@@ -28,16 +28,16 @@ public class ServicioAsociadoServicio {
     public List<ServicioAsociadoResponseDTO> listarActivos() {
         log.info("Listando servicios activos");
         return repo.findByEstado(ServicioAsociado.ESTADO_ACTIVO)
-                   .stream()
-                   .map(ServicioAsociadoMapper::toDto)
-                   .collect(Collectors.toList());
+                .stream()
+                .map(ServicioAsociadoMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     /** Busca un servicio por ID, sin importar su estado */
     public ServicioAsociadoResponseDTO obtenerPorId(String id) {
         log.info("Obteniendo servicio con ID {}", id);
         ServicioAsociado e = repo.findById(id)
-            .orElseThrow(() -> new RecursoNoEncontradoException("ServicioAsociado", id));
+                .orElseThrow(() -> new RecursoNoEncontradoException("ServicioAsociado", id));
         return ServicioAsociadoMapper.toDto(e);
     }
 
@@ -57,7 +57,7 @@ public class ServicioAsociadoServicio {
     public ServicioAsociadoResponseDTO actualizar(String id, ServicioAsociadoRequestDTO dto) {
         log.info("Actualizando servicio {}", id);
         ServicioAsociado e = repo.findById(id)
-            .orElseThrow(() -> new RecursoNoEncontradoException("ServicioAsociado", id));
+                .orElseThrow(() -> new RecursoNoEncontradoException("ServicioAsociado", id));
 
         e.setNombre(dto.getNombre());
         e.setDescripcion(dto.getDescripcion());
@@ -72,7 +72,7 @@ public class ServicioAsociadoServicio {
     public void eliminar(String id) {
         log.info("Desactivando servicio {}", id);
         ServicioAsociado e = repo.findById(id)
-            .orElseThrow(() -> new RecursoNoEncontradoException("ServicioAsociado", id));
+                .orElseThrow(() -> new RecursoNoEncontradoException("ServicioAsociado", id));
 
         if (!ServicioAsociado.ESTADO_INACTIVO.equals(e.getEstado())) {
             e.setEstado(ServicioAsociado.ESTADO_INACTIVO);
