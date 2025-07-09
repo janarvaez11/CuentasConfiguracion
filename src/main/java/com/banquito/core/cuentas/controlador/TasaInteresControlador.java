@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tasas-intereses")
+@RequestMapping("/api/v1/v1/tasas-intereses")
 @Tag(name = "Tasas-Intereses", description = "Operaciones CRUD sobre tasas de interés")
 @Slf4j
 public class TasaInteresControlador {
@@ -36,7 +36,7 @@ public class TasaInteresControlador {
     })
     @GetMapping
     public List<TasaInteresResponseDTO> listar() {
-        log.info("GET /api/tasas-intereses → listar todas");
+        log.info("GET /api/v1/tasas-intereses → listar todas");
         return servicio.listarTodos();
     }
 
@@ -48,7 +48,7 @@ public class TasaInteresControlador {
     @GetMapping("/{id}")
     public TasaInteresResponseDTO obtener(
             @Parameter(description = "ID de la tasa de interés", required = true) @PathVariable String id) {
-        log.info("GET /api/tasas-intereses/{} → obtener por ID", id);
+        log.info("GET /api/v1/tasas-intereses/{} → obtener por ID", id);
         return servicio.obtenerPorId(id);
     }
 
@@ -61,7 +61,7 @@ public class TasaInteresControlador {
     @ResponseStatus(HttpStatus.CREATED)
     public TasaInteresResponseDTO crear(
             @Parameter(description = "Payload con datos de la nueva tasa", required = true) @Valid @RequestBody TasaInteresRequestDTO dto) {
-        log.info("POST /api/tasas-intereses → crear tasa con nombre={}");
+        log.info("POST /api/v1/tasas-intereses → crear tasa con nombre={}");
         return servicio.crear(dto);
     }
 
@@ -75,7 +75,7 @@ public class TasaInteresControlador {
     public TasaInteresResponseDTO actualizar(
             @Parameter(description = "ID de la tasa a actualizar", required = true) @PathVariable String id,
             @Parameter(description = "Payload con datos actualizados", required = true) @Valid @RequestBody TasaInteresRequestDTO dto) {
-        log.info("PUT /api/tasas-intereses/{} → actualizar", id);
+        log.info("PUT /api/v1/tasas-intereses/{} → actualizar", id);
         return servicio.actualizar(id, dto);
     }
 
@@ -88,7 +88,7 @@ public class TasaInteresControlador {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(
             @Parameter(description = "ID de la tasa a eliminar", required = true) @PathVariable String id) {
-        log.info("DELETE /api/tasas-intereses/{} → eliminar lógicamente", id);
+        log.info("DELETE /api/v1/tasas-intereses/{} → eliminar lógicamente", id);
         servicio.eliminar(id);
     }
 }
