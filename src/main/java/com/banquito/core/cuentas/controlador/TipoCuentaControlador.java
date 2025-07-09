@@ -1,15 +1,10 @@
-// src/main/java/com/banquito/core/cuentas/controlador/TipoCuentaControlador.java
+// src/main/java/com/banquito/core/cuentas/controlador/v1/TipoCuentaControlador.java
 package com.banquito.core.cuentas.controlador;
 
 import com.banquito.core.cuentas.dto.TipoCuentaRequestDTO;
 import com.banquito.core.cuentas.dto.TipoCuentaResponseDTO;
 import com.banquito.core.cuentas.servicio.TipoCuentaServicio;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tipos-cuentas")
-@Tag(name = "Tipos-Cuentas", description = "CRUD sobre los tipos de cuenta")
+@RequestMapping("/api/v1/tipos-cuentas")
+@Tag(name = "v1 – Tipos-Cuentas", description = "CRUD sobre los tipos de cuenta")
 @Slf4j
 public class TipoCuentaControlador {
 
@@ -30,65 +25,43 @@ public class TipoCuentaControlador {
         this.servicio = servicio;
     }
 
-    @Operation(summary = "Listar todos los tipos de cuenta", description = "Devuelve un listado de todos los tipos de cuenta disponibles")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Listado devuelto", content = @Content(schema = @Schema(implementation = TipoCuentaResponseDTO.class)))
-    })
     @GetMapping
+    @Operation(summary = "Listar Tipos de Cuenta activos")
     public List<TipoCuentaResponseDTO> listar() {
-        log.info("GET /api/tipos-cuentas → listar todos");
-        return servicio.listarTodos();
+        log.info("GET /api/v1/tipos-cuentas");
+        return servicio.listarTodosActivos();
     }
 
-    @Operation(summary = "Obtener tipo de cuenta por ID", description = "Devuelve los datos de un tipo de cuenta específico")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Tipo de cuenta encontrado", content = @Content(schema = @Schema(implementation = TipoCuentaResponseDTO.class))),
-            @ApiResponse(responseCode = "404", description = "Tipo de cuenta no encontrado")
-    })
     @GetMapping("/{id}")
-    public TipoCuentaResponseDTO obtenerPorId(
-            @Parameter(description = "ID del tipo de cuenta", required = true) @PathVariable String id) {
-        log.info("GET /api/tipos-cuentas/{} → obtener por ID", id);
+    @Operation(summary = "Obtener TipoCuenta por ID")
+    public TipoCuentaResponseDTO obtener(@PathVariable String id) {
+        log.info("GET /api/v1/tipos-cuentas/{}", id);
         return servicio.obtenerPorId(id);
     }
 
-    @Operation(summary = "Crear nuevo tipo de cuenta", description = "Registra un nuevo tipo de cuenta en el sistema")
-    @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Tipo de cuenta creado", content = @Content(schema = @Schema(implementation = TipoCuentaResponseDTO.class))),
-            @ApiResponse(responseCode = "400", description = "Datos inválidos")
-    })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Crear nuevo TipoCuenta")
     public TipoCuentaResponseDTO crear(
-            @Parameter(description = "Payload con datos del nuevo tipo de cuenta", required = true) @Valid @RequestBody TipoCuentaRequestDTO request) {
-        log.info("POST /api/tipos-cuentas → crear nombre={}", request.getNombre());
-        return servicio.crear(request);
+        @Valid @RequestBody TipoCuentaRequestDTO dto) {
+        log.info("POST /api/v1/tipos-cuentas nombre={}", dto.getNombre());
+        return servicio.crear(dto);
     }
 
-    @Operation(summary = "Actualizar tipo de cuenta existente", description = "Modifica los datos de un tipo de cuenta dado")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Tipo de cuenta actualizado", content = @Content(schema = @Schema(implementation = TipoCuentaResponseDTO.class))),
-            @ApiResponse(responseCode = "404", description = "Tipo de cuenta no encontrado"),
-            @ApiResponse(responseCode = "400", description = "Datos inválidos")
-    })
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar TipoCuenta existente")
     public TipoCuentaResponseDTO actualizar(
-            @Parameter(description = "ID del tipo de cuenta", required = true) @PathVariable String id,
-            @Parameter(description = "Payload con datos a actualizar", required = true) @Valid @RequestBody TipoCuentaRequestDTO request) {
-        log.info("PUT /api/tipos-cuentas/{} → actualizar", id);
-        return servicio.actualizar(id, request);
+        @PathVariable String id,
+        @Valid @RequestBody TipoCuentaRequestDTO dto) {
+        log.info("PUT /api/v1/tipos-cuentas/{}", id);
+        return servicio.actualizar(id, dto);
     }
 
-    @Operation(summary = "Eliminar (lógico) tipo de cuenta", description = "Marca un tipo de cuenta como inactivo")
-    @ApiResponses({
-            @ApiResponse(responseCode = "204", description = "Tipo de cuenta eliminado"),
-            @ApiResponse(responseCode = "404", description = "Tipo de cuenta no encontrado")
-    })
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void eliminar(
-            @Parameter(description = "ID del tipo de cuenta", required = true) @PathVariable String id) {
-        log.info("DELETE /api/tipos-cuentas/{} → eliminar lógicamente", id);
-        servicio.eliminar(id);
+    @Operation(summary = "Eliminación lógica de TipoCuenta")
+    public void eliminar(@PathVariable String id) {
+        log.info("DELETE /api/v1/tipos-cuentas/{}", id);
+        servicio.eliminarLogico(id);
     }
 }
