@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comisiones-cargos-cuentas")
+@RequestMapping("/api/cuentas/comisiones-cargos-cuentas")
 @Tag(name = "Comisiones-Cargos-Cuentas", description = "Asignación y cobro de comisiones/cargos a cuentas")
 @Slf4j
 public class ComisionCargoCuentaControlador {
@@ -41,7 +41,7 @@ public class ComisionCargoCuentaControlador {
     @ResponseStatus(HttpStatus.CREATED)
     public ComisionCargoCuentaResponseDTO asignar(
             @Parameter(description = "Payload de asignación", required = true) @Valid @RequestBody ComisionCargoCuentaRequestDTO dto) {
-        log.info("POST /api/comisiones-cargos-cuentas → asignar comisionCargoId={} a cuentaClienteId={}",
+        log.info("POST /api/cuentas/comisiones-cargos-cuentas → asignar comisionCargoId={} a cuentaClienteId={}",
                 dto.getComisionCargoId(), dto.getCuentaClienteId());
         return service.asignar(dto);
     }
@@ -55,7 +55,7 @@ public class ComisionCargoCuentaControlador {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void desactivar(
             @Parameter(description = "ID de la asignación", required = true) @PathVariable String id) {
-        log.info("PUT /api/comisiones-cargos-cuentas/{}/desactivar", id);
+        log.info("PUT /api/cuentas/comisiones-cargos-cuentas/{}/desactivar", id);
         service.desactivar(id);
     }
 
@@ -66,7 +66,7 @@ public class ComisionCargoCuentaControlador {
     @GetMapping("/por-cuenta/{cuentaClienteId}")
     public List<ComisionCargoCuentaDetalleDTO> listarPorCuenta(
             @Parameter(description = "ID de la cuenta cliente", required = true) @PathVariable String cuentaClienteId) {
-        log.info("GET /api/comisiones-cargos-cuentas/por-cuenta/{} → listar", cuentaClienteId);
+        log.info("GET /api/cuentas/comisiones-cargos-cuentas/por-cuenta/{} → listar", cuentaClienteId);
         return service.listarPorCuenta(cuentaClienteId);
     }
 
@@ -78,7 +78,7 @@ public class ComisionCargoCuentaControlador {
     @PostMapping("/{id}/cobrar")
     public TransaccionesRespuestaDTO cobrar(
             @Parameter(description = "ID de la asignación", required = true) @PathVariable String id) {
-        log.info("POST /api/comisiones-cargos-cuentas/{}/cobrar", id);
+        log.info("POST /api/cuentas/comisiones-cargos-cuentas/{}/cobrar", id);
         return service.procesarCobro(id);
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/tipos-cuentas")
+@RequestMapping("/api/cuentas/v1/tipos-cuentas")
 @Tag(name = "v1 – Tipos-Cuentas", description = "CRUD sobre los tipos de cuenta")
 @Slf4j
 public class TipoCuentaControlador {
@@ -28,14 +28,14 @@ public class TipoCuentaControlador {
     @GetMapping
     @Operation(summary = "Listar Tipos de Cuenta activos")
     public List<TipoCuentaResponseDTO> listar() {
-        log.info("GET /api/v1/tipos-cuentas");
+        log.info("GET /api/cuentas/v1/tipos-cuentas");
         return servicio.listarTodosActivos();
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtener TipoCuenta por ID")
     public TipoCuentaResponseDTO obtener(@PathVariable String id) {
-        log.info("GET /api/v1/tipos-cuentas/{}", id);
+        log.info("GET /api/cuentas/v1/tipos-cuentas/{}", id);
         return servicio.obtenerPorId(id);
     }
 
@@ -53,7 +53,7 @@ public class TipoCuentaControlador {
     public TipoCuentaResponseDTO actualizar(
         @PathVariable String id,
         @Valid @RequestBody TipoCuentaRequestDTO dto) {
-        log.info("PUT /api/v1/tipos-cuentas/{}", id);
+        log.info("PUT /api/cuentas/v1/tipos-cuentas/{}", id);
         return servicio.actualizar(id, dto);
     }
 
@@ -61,7 +61,7 @@ public class TipoCuentaControlador {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Eliminación lógica de TipoCuenta")
     public void eliminar(@PathVariable String id) {
-        log.info("DELETE /api/v1/tipos-cuentas/{}", id);
+        log.info("DELETE /api/cuentas/v1/tipos-cuentas/{}", id);
         servicio.eliminarLogico(id);
     }
 }

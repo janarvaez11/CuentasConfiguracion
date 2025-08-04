@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/servicios-asociados")
+@RequestMapping("/api/cuentas/servicios-asociados")
 @Tag(name = "Servicios-Asociados", description = "Gestión de servicios asociados")
 @Slf4j
 public class ServicioAsociadoControlador {
@@ -36,7 +36,7 @@ public class ServicioAsociadoControlador {
     })
     @GetMapping
     public List<ServicioAsociadoResponseDTO> listar() {
-        log.info("GET /api/servicios-asociados → listar activos");
+        log.info("GET /api/cuentas/servicios-asociados → listar activos");
         return service.listarActivos();
     }
 
@@ -48,7 +48,7 @@ public class ServicioAsociadoControlador {
     @GetMapping("/{id}")
     public ServicioAsociadoResponseDTO getById(
             @Parameter(description = "ID del servicio", required = true) @PathVariable String id) {
-        log.info("GET /api/servicios-asociados/{} → obtener por ID", id);
+        log.info("GET /api/cuentas/servicios-asociados/{} → obtener por ID", id);
         return service.obtenerPorId(id);
     }
 
@@ -61,7 +61,7 @@ public class ServicioAsociadoControlador {
     @ResponseStatus(HttpStatus.CREATED)
     public ServicioAsociadoResponseDTO crear(
             @Parameter(description = "Payload de creación", required = true) @Valid @RequestBody ServicioAsociadoRequestDTO dto) {
-        log.info("POST /api/servicios-asociados → crear nombre={}", dto.getNombre());
+        log.info("POST /api/cuentas/servicios-asociados → crear nombre={}", dto.getNombre());
         return service.crear(dto);
     }
 
@@ -75,7 +75,7 @@ public class ServicioAsociadoControlador {
     public ServicioAsociadoResponseDTO actualizar(
             @Parameter(description = "ID del servicio", required = true) @PathVariable String id,
             @Parameter(description = "Payload de actualización", required = true) @Valid @RequestBody ServicioAsociadoRequestDTO dto) {
-        log.info("PUT /api/servicios-asociados/{} → actualizar", id);
+        log.info("PUT /api/cuentas/servicios-asociados/{} → actualizar", id);
         return service.actualizar(id, dto);
     }
 
@@ -88,7 +88,7 @@ public class ServicioAsociadoControlador {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(
             @Parameter(description = "ID del servicio", required = true) @PathVariable String id) {
-        log.info("DELETE /api/servicios-asociados/{} → borrar lógicamente", id);
+        log.info("DELETE /api/cuentas/servicios-asociados/{} → borrar lógicamente", id);
         service.eliminar(id);
     }
 }

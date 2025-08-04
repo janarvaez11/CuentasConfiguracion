@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 )
 public interface CuentasClientesCliente {
 
-    @PostMapping("/api/v1/transacciones/retiro")
+    @PostMapping("/api/cuentas/v1/transacciones/retiro")
     TransaccionesRespuestaDTO retiro(@RequestBody TransaccionesSolicitudDTO dto);
 
 }
