@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/servicios-asociados-cuentas")
+@RequestMapping("/api/cuentas/servicios-asociados-cuentas")
 @Tag(name = "Servicios-Asociados-Cuentas", description = "Asignación y gestión de servicios asociados a cuentas")
 @Slf4j
 public class ServicioAsociadoCuentaControlador {
@@ -38,7 +38,7 @@ public class ServicioAsociadoCuentaControlador {
     @GetMapping("/por-cuenta/{cuentaClienteId}")
     public List<ServicioAsociadoCuentaDetalleDTO> listarDetallePorCuenta(
             @Parameter(description = "ID de la cuenta cliente", required = true) @PathVariable String cuentaClienteId) {
-        log.info("GET /api/servicios-asociados-cuentas/por-cuenta/{} → listar detalle", cuentaClienteId);
+        log.info("GET /api/cuentas/servicios-asociados-cuentas/por-cuenta/{} → listar detalle", cuentaClienteId);
         return service.listarServiciosPorCuenta(cuentaClienteId);
     }
 
@@ -51,7 +51,7 @@ public class ServicioAsociadoCuentaControlador {
     @ResponseStatus(HttpStatus.CREATED)
     public ServicioAsociadoCuentaResponseDTO asignar(
             @Parameter(description = "Payload con datos de la asignación", required = true) @Valid @RequestBody ServicioAsociadoCuentaRequestDTO dto) {
-        log.info("POST /api/servicios-asociados-cuentas → asignar servicioId={} a cuentaClienteId={}",
+        log.info("POST /api/cuentas/servicios-asociados-cuentas → asignar servicioId={} a cuentaClienteId={}",
                 dto.getServicioId(), dto.getCuentaClienteId());
         return service.asignarServicio(dto);
     }
@@ -65,7 +65,7 @@ public class ServicioAsociadoCuentaControlador {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void desactivar(
             @Parameter(description = "ID de la asignación", required = true) @PathVariable String id) {
-        log.info("PUT /api/servicios-asociados-cuentas/{}/desactivar", id);
+        log.info("PUT /api/cuentas/servicios-asociados-cuentas/{}/desactivar", id);
         service.desactivarAsignacion(id);
     }
 }

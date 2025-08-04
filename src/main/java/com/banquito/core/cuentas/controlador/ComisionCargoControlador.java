@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comisiones-cargos")
+@RequestMapping("/api/cuentas/comisiones-cargos")
 @Tag(name = "Comisiones-Cargos", description = "CRUD de comisiones y cargos")
 @Slf4j
 public class ComisionCargoControlador {
@@ -35,7 +35,7 @@ public class ComisionCargoControlador {
     })
     @GetMapping
     public List<ComisionCargoResponseDTO> listar() {
-        log.info("GET /api/comisiones-cargos → listar");
+        log.info("GET /api/cuentas/comisiones-cargos → listar");
         return service.listarActivas();
     }
 
@@ -47,7 +47,7 @@ public class ComisionCargoControlador {
     @GetMapping("/{id}")
     public ComisionCargoResponseDTO getById(
             @Parameter(description = "ID de la comisión/cargo", required = true) @PathVariable String id) {
-        log.info("GET /api/comisiones-cargos/{} → obtener", id);
+        log.info("GET /api/cuentas/comisiones-cargos/{} → obtener", id);
         return service.obtenerPorId(id);
     }
 
@@ -60,7 +60,7 @@ public class ComisionCargoControlador {
     @ResponseStatus(HttpStatus.CREATED)
     public ComisionCargoResponseDTO crear(
             @Parameter(description = "Payload de creación", required = true) @Valid @RequestBody ComisionCargoRequestDTO dto) {
-        log.info("POST /api/comisiones-cargos → crear tipo={} servicio={}",
+        log.info("POST /api/cuentas/comisiones-cargos → crear tipo={} servicio={}",
                 dto.getTipoComision(), dto.getServicioId());
         return service.crear(dto);
     }
@@ -75,7 +75,7 @@ public class ComisionCargoControlador {
     public ComisionCargoResponseDTO actualizar(
             @Parameter(description = "ID del recurso", required = true) @PathVariable String id,
             @Parameter(description = "Payload de actualización", required = true) @Valid @RequestBody ComisionCargoRequestDTO dto) {
-        log.info("PUT /api/comisiones-cargos/{} → actualizar", id);
+        log.info("PUT /api/cuentas/comisiones-cargos/{} → actualizar", id);
         return service.actualizar(id, dto);
     }
 
@@ -88,7 +88,7 @@ public class ComisionCargoControlador {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(
             @Parameter(description = "ID del recurso", required = true) @PathVariable String id) {
-        log.info("DELETE /api/comisiones-cargos/{} → borrar lógicamente", id);
+        log.info("DELETE /api/cuentas/comisiones-cargos/{} → borrar lógicamente", id);
         service.eliminar(id);
     }
 }
