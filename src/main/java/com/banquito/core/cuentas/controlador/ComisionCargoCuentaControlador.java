@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cuentas/comisiones-cargos-cuentas")
+@RequestMapping("/api/configuracion-cuentas/v1/comisiones-cargos-cuentas")
 @Tag(name = "Comisiones-Cargos-Cuentas", description = "Asignación y cobro de comisiones/cargos a cuentas")
 @Slf4j
 public class ComisionCargoCuentaControlador {

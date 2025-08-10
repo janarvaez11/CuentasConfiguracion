@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cuentas/servicios-asociados")
+@RequestMapping("/api/configuracion-cuentas/v1/servicios-asociados")
 @Tag(name = "Servicios-Asociados", description = "Gestión de servicios asociados")
 @Slf4j
 public class ServicioAsociadoControlador {
