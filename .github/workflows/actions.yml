@@ -9,9 +9,9 @@ on:
 env:
   AWS_REGION: us-east-2
   ECR_REGISTRY: 425784381978.dkr.ecr.us-east-2.amazonaws.com
-  ECR_REPOSITORY: banquito-banco-cuentas
+  ECR_REPOSITORY: banquito-banco-transferencias
   ECS_CLUSTER: banquito-cluster
-  ECS_SERVICE: banquito-banco-cuentas
+  ECS_SERVICE: banquito-banco-transferencias
   CONTAINER_NAME: cuentasconfiguracion-container
 
 jobs:
