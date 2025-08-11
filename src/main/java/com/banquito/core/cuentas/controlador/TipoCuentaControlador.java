@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/configuracion-cuentas/v1/tipos-cuentas")
+@RequestMapping("/api/transferencias/v1/tipos-cuentas")
 @Tag(name = "v1 – Tipos-Cuentas", description = "CRUD sobre los tipos de cuenta")
 @Slf4j
 public class TipoCuentaControlador {
