@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/transferencias/v1/comisiones-cargos")
+@RequestMapping("/v1/comisiones-cargos")
 @Tag(name = "Comisiones-Cargos", description = "CRUD de comisiones y cargos")
 @Slf4j
 public class ComisionCargoControlador {

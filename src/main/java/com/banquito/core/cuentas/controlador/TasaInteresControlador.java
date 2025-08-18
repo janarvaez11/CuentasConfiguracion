@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/transferencias/v1/tasas-intereses")
+@RequestMapping("/v1/tasas-intereses")
 @Tag(name = "Tasas-Intereses", description = "Operaciones CRUD sobre tasas de interés")
 @Slf4j
 public class TasaInteresControlador {
